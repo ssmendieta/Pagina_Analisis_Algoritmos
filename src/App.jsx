@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';  
 import Graficador from './paginas/Graficador'
 import AnalisisInfo from './paginas/AlgoInfo'
 import PaginaIncio from './paginas/PaginaInicio';
