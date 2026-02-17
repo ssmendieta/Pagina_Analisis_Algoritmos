@@ -35,9 +35,8 @@ export default function App() {
       </nav>
 
       
-
-      {/* Rutas - aquí se renderizan las páginas */}
       <Routes>
+        <Route path="/" element={<Navigate to="/paginaInicio" replace />} />
         <Route path="/algoritmos" element={<AnalisisInfo />} />
         <Route path="/graficador" element={<Graficador />} />
         <Route path="/paginaInicio" element={<PaginaIncio />} />
