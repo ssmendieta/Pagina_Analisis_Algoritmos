@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import Graficador from './paginas/Graficador'
 import AnalisisInfo from './paginas/AlgoInfo'
 import PaginaIncio from './paginas/PaginaInicio';
+import Matriz from './paginas/Matriz.JSX'
 import { Play, BookOpen, Zap, Code, Layout, Users, ChevronRight } from 'lucide-react';
 
 export default function App() {
@@ -29,8 +30,8 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-4">
-         
-          
+
+    
         </div>
       </nav>
 
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/algoritmos" element={<AnalisisInfo />} />
         <Route path="/graficador" element={<Graficador />} />
         <Route path="/paginaInicio" element={<PaginaIncio />} />
+        <Route path="/matriz" element={<Matriz />} />
       </Routes>
     </Router>
   );

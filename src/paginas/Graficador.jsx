@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { 
   Trash2, 
   Settings, 
-  Share2, 
- 
+  Share2,
+  CloudCog, 
 } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+
 
 const GraphEditor = () => {
+  const navigate = useNavigate();
 
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -203,6 +206,21 @@ const GraphEditor = () => {
     }
   };
 
+  const handleMatrizClick = () => {
+  console.log("si");
+
+  if (hasWeights) {
+    navigate("/matriz", {
+      state: {
+        nodes: nodes,
+        edges: edges
+      }
+    });
+  } else {
+    alert("No puedes acceder");
+  }
+};
+
 
   return (
     <div className="flex h-screen bg-[#0a0c14] text-white font-sans overflow-hidden">
@@ -278,10 +296,10 @@ const GraphEditor = () => {
         >
           
           <div className="absolute inset-0" 
-               style={{ 
-                 backgroundImage: 'radial-gradient(circle, #ffffff10 1px, transparent 1px)', 
-                 backgroundSize: '30px 30px' 
-               }} 
+              style={{ 
+                backgroundImage: 'radial-gradient(circle, #ffffff10 1px, transparent 1px)', 
+                backgroundSize: '30px 30px' 
+              }} 
           />
           <svg
             style={{
@@ -530,7 +548,8 @@ const GraphEditor = () => {
                 </div>
               </div>
             )}
-
+        <button onClick={handleMatrizClick}
+        >Matriz de Adyacencia</button>
         
         <footer className="h-10 px-6 border-t border-white/5 bg-[#0d1117] flex items-center justify-between text-[10px] text-gray-500 font-mono uppercase tracking-widest">
           <div className="flex gap-6">
@@ -540,6 +559,7 @@ const GraphEditor = () => {
           
         </footer>
       </main>
+      
     </div>
   );
 };
