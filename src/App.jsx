@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import Graficador from './paginas/Graficador'
 import AnalisisInfo from './paginas/AlgoInfo'
 import PaginaIncio from './paginas/PaginaInicio';
-import Matriz from './paginas/Matriz.JSX'
+import Matriz from './paginas/Matriz'
 import { Play, BookOpen, Zap, Code, Layout, Users, ChevronRight } from 'lucide-react';
 
 export default function App() {
