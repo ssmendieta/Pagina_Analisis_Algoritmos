@@ -21,7 +21,6 @@ function useAdjacencyMatrix(nodeList, edgeList) {
 }, [nodeList, edgeList]);
 }
 
-// ─── Helpers de color ─────────────────────────────────────────────────────
 function getCellStyle(value, isLoop, isDiagonal) {
     if (isLoop && value !== null)
     return { bg: "#6366f1", text: "#fff", shadow: "0 0 12px #6366f180" };
@@ -37,7 +36,6 @@ export default function AdjacencyMatrix() {
     const { nodes, edges } = location.state ?? { nodes: [], edges: [] };
     const matrix = useAdjacencyMatrix(nodes, edges);
 
-  // Estadísticas rápidas
     const edgeCount = edges.filter((e) => !e.isLoop).length;
     const loopCount = edges.filter((e) => e.isLoop).length;
   const density = ((edgeCount / (nodes.length * (nodes.length - 1))) * 100).toFixed(1);
@@ -47,10 +45,27 @@ export default function AdjacencyMatrix() {
     rowSums[row.id] = nodes.reduce((acc, col) => acc + (matrix[row.id][col.id] ?? 0), 0);
     });
 
-    // Suma por columna
     const colSums = {};
     nodes.forEach((col) => {
     colSums[col.id] = nodes.reduce((acc, row) => acc + (matrix[row.id][col.id] ?? 0), 0);
+    });
+
+    
+
+    const rowCont = {};
+
+    nodes.forEach((row) => {
+      rowCont[row.id] = nodes.reduce((acc, col) => {
+        return acc + (matrix[row.id][col.id] != null ? 1 : 0);
+      }, 0);
+    });
+
+    const colCont = {};
+
+    nodes.forEach((col) => {
+      colCont[col.id] = nodes.reduce((acc, row) => {
+        return acc + (matrix[row.id][col.id] !== null ? 1 : 0);
+      }, 0);
     });
 
     return (
@@ -74,7 +89,8 @@ export default function AdjacencyMatrix() {
                 {nodes.map((col) => (
                 <th key={col.id} style={styles.headerCell}>{col.id}</th>
                 ))}
-                <th>Sum Filas</th>
+                <th>∑</th>
+                <th>Cont Filas</th>
             </tr>
             </thead>
             <tbody>
@@ -99,21 +115,37 @@ export default function AdjacencyMatrix() {
                 <td style={{ ...styles.cell, background: "#1e293b", color: "#f472b6", fontWeight: 700 }}>
                 {rowSums[row.id]}
                 </td>
+                <td style={{ ...styles.cell, background: "#1e293b", color: "#f472b6", fontWeight: 700 }}>
+                {rowCont[row.id]}
+                </td>
                 </tr>
             ))}
             <tr>
-            <td >Sum column</td>
+            <td>∑</td>
+
             {nodes.map((col) => (
-                <td
+              <td
                 key={col.id}
                 style={{ ...styles.cell, background: "#1e293b", color: "#f472b6", fontWeight: 700 }}
-                >
+              >
                 {colSums[col.id]}
-                </td>
+              </td>
             ))}
-            {/* Celda esquina: suma total */}
-            
-            </tr>
+
+            {/* Nueva columna para el conteo */}
+            <td style={{ ...styles.cell, background: "#1e293b", color: "#f472b6", fontWeight: 700 }}>
+              {/* Puedes dejar vacío o poner título */}
+            </td>
+          </tr>
+          <td>Cont Colum</td>
+          {nodes.map((col) => (
+              <td
+                key={`count-${col.id}`}
+                style={{ ...styles.cell, background: "#1e293b", color: "#22d3ee", fontWeight: 700 }}
+              >
+                {colCont[col.id]}
+              </td>
+            ))}
             </tbody>
           </table>
         </div>
