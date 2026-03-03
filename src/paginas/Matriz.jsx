@@ -70,7 +70,6 @@ export default function AdjacencyMatrix() {
 
     return (
     <div style={styles.page}>
-      {/* Header */}
       <div style={styles.header}>
       
         <h1 style={styles.title}>Matriz de Adyacencia</h1>
@@ -79,7 +78,6 @@ export default function AdjacencyMatrix() {
           <Stat label="Aristas" value={edgeCount} color="#a78bfa" />          
         </div>
       </div>
-      {/* Matriz */}
       <div style={styles.matrixWrapper}>
         <div style={styles.matrixScroll}>
           <table style={styles.table}>
@@ -131,10 +129,7 @@ export default function AdjacencyMatrix() {
                 {colSums[col.id]}
               </td>
             ))}
-
-            {/* Nueva columna para el conteo */}
             <td style={{ ...styles.cell, background: "#1e293b", color: "#f472b6", fontWeight: 700 }}>
-              {/* Puedes dejar vacío o poner título */}
             </td>
           </tr>
           <td>Cont Colum</td>
@@ -151,7 +146,6 @@ export default function AdjacencyMatrix() {
         </div>
       </div>
 
-      {/* Lista de aristas */}
       <div style={styles.edgeList}>
         <h2 style={styles.sectionTitle}>Aristas registradas</h2>
         <div style={styles.edgeGrid}>
@@ -174,7 +168,6 @@ export default function AdjacencyMatrix() {
   );
 }
 
-// ─── Subcomponentes ───────────────────────────────────────────────────────
 function Stat({ label, value, color }) {
   return (
     <div style={styles.stat}>
@@ -193,7 +186,6 @@ function LegendItem({ color, label }) {
   );
 }
 
-// ─── Estilos ──────────────────────────────────────────────────────────────
 const styles = {
   page: {
     minHeight: "100vh",
