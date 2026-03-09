@@ -60,7 +60,8 @@ const GraphEditor = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'grafo.json';
+    const  name = prompt("Nombre del archivo")
+    a.download = name;
     a.click();
     URL.revokeObjectURL(url);
   };
